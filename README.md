@@ -73,3 +73,9 @@ knit template hello --help
   `knit_myplugin_*`) to avoid a collision with Knit or another plugin.
 - Do not use the private Knit prefixes `_knit_*` and `__knit_*` for new API; they
   are internal to Knit and can change.
+- In `plugin.sh`, call the Knit API by its canonical name (for example
+  `knit_register`, `knit_with_required`), not the `@` shorthand form. A user can
+  disable shorthands (`KNIT_WITHOUT_SHORTHAND`), which would leave a shorthand
+  undefined and break your plugin as it loads. A shorthand that your plugin
+  registers with `knit_register_shorthand` is a convenience for the user's own
+  experiment, not for `plugin.sh` itself.

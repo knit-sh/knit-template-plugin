@@ -114,7 +114,11 @@ knit_done
 knit_register "template:hello" template_hello \
     "Greet a name and record it under the .knit directory."
 knit_with_required "name:string" "The name to greet."
-@with_banner "template plugin"
+# Call the decorator by its canonical name, not the "@with_banner" shorthand. A
+# user can disable shorthands (KNIT_WITHOUT_SHORTHAND), which would leave the
+# shorthand undefined and break this registration. The shorthand stays available
+# for the user's own experiment.
+template_with_banner "template plugin"
 knit_done
 
 # -----------------------------------------------------------------------------
